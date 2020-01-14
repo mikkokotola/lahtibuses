@@ -11,8 +11,7 @@ This simple Node.js app fetches real time bus location data from the LSL / Waltt
 - Insert your Google API key into the google maps URL at the end of lahtibuses.html 
 
 ## How to run locally
-- Start the bus data fetching routine by running `node fetcher.js`
-- Start the web server by running `npm start` - this will start the server at localhost:3001
+- Start the web server by running `npm start` - this will start the server at localhost:3001 and the bus data fetcher routine
 - Open the html file lahtibuses.html in a browser
 
 ## Configuration
