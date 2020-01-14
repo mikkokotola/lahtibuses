@@ -52,45 +52,53 @@
           .then(function(response) {
             response.json()
             .then(function(buses) {
+              tmpMarkers = markers;
               deleteMarkers();
-              console.log('Got response, processing buses')
+              console.log('Got response, processing buses');
               buses.forEach(bus => {
-                console.log(bus)
-                makeMarker(bus.vehicle.position.latitude, bus.vehicle.position.longitude)
+                // Only make markers for Lahti area - API seems to be giving data for wrong city occasionally
+                if (bus.vehicle.position.latitude > 60.60 && bus.vehicle.position.latitude < 61.40 && bus.vehicle.position.longitude > 24.70 && bus.vehicle.position.longitude < 26.50) {
+                  makeMarker(bus.vehicle.position.latitude, bus.vehicle.position.longitude, bus.vehicle.trip.routeName);
+                }
               });
+              if (markers.length == 0) {
+                markers = tmpMarkers;
+              }
               showMarkers();
             });
           }); 
       }
 
-      function makeMarker(lat, lon) {
+      function makeMarker(lat, lon, txt) {
+        console.log('Making marker with text ' + txt);
         var marker = new google.maps.Marker({
           position: {lat: lat, lng: lon},          
           map: map,
-          icon: icon          
+          icon: icon,
+          label: { color: '#000000', fontWeight: 'bold', fontSize: '16px', text: txt }
         });
-        console.log('Pushing marker with latlon ' + lat + ', ' + lon)
+        console.log('Pushing marker with latlon ' + lat + ', ' + lon);
         markers.push(marker);
       }
     
       // Sets the map on all markers in the array.
       function setMapOnAll(mapp) {
-        console.log('In setMapOnAll, markers length ' + markers.length)        
+        console.log('In setMapOnAll, markers length ' + markers.length);
         for (var i = 0; i < markers.length; i++) {
-          console.log(markers[i])
+          console.log(markers[i]);
           markers[i].setMap(mapp);
         }        
       }
 
       // Removes the markers from the map, but keeps them in the array.
       function clearMarkers() {
-        console.log('In clearMarkers')
+        console.log('In clearMarkers');
         setMapOnAll(null);
       }
 
       // Shows any markers currently in the array.
       function showMarkers() {
-        console.log('In showMarkers')
+        console.log('In showMarkers');
         setMapOnAll(map);
       }
 
@@ -100,7 +108,7 @@
         markers = [];
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=INSERTAPIKEYHERE&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=ENTERYOURKEYHERE&callback=initMap"
     async defer></script>
   </body>
 </html>

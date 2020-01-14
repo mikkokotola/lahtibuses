@@ -1,24 +1,30 @@
 // load up the express framework and body-parser helper
 const express = require('express');
 const bodyParser = require('body-parser');
-var cors = require('cors')
+const cors = require('cors');
+const dotenv = require('dotenv').config();
+const busDataFetcher = require('./fetchBusData.js');
 
-// create an instance of express to serve our end points
+const busDataFetchInterval = parseInt(process.env.BUSDATAFETCHINTERVAL);
+const port = parseInt(process.env.PORT);
+
 const app = express();
-app.use(cors())
+app.use(cors());
 
-// we'll load up node's built in file system helper library here
+// File system helper library
 const fs = require('fs');
 
-// configure our express instance with some body-parser settings 
+// Configure express instance with some body-parser settings 
 // including handling JSON data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// this is where we'll handle our various routes from
 const routes = require('./routes/routes.js')(app, fs);
 
-// finally, launch our server on port 3001.
-const server = app.listen(3001, () => {
+// Launch server on port 3001.
+const server = app.listen(port, () => {
     console.log('listening on port %s...', server.address().port);
 });
+
+// Start bus data fetcher
+setInterval(busDataFetcher.fetchBusData.bind(null, fs), busDataFetchInterval);

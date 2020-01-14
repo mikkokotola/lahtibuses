@@ -1,15 +1,13 @@
-const busRoutes = require('./busRoutes');
+const busRoutes = require('./busRoutes.js');
 
 const appRouter = (app, fs) => {
 
-    // we've added in a default route here that handles empty routes
-    // at the base API url
     app.get('/', (req, res) => {
-        res.send('Welcome to the development api-server');
+        res.send('Bus data server. Make calls to /buses');
     });
 
 
-    // run our bus route module
+    // Bus route module
     busRoutes(app, fs);
 };
 
