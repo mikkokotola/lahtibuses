@@ -1,6 +1,8 @@
 # Lahti buses on a map
 This simple Node.js app fetches real time bus location data from the LSL / Waltti API and displays the buses on Google maps.
 
+![alt text](./lahtibuses_screen.png "Lahti buses screencapture")
+
 ## How to install
 - Install Node.js (see https://nodejs.org/en/download/)
 - Run `npm install` in the root folder - this installs dependencies
