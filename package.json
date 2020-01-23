@@ -15,10 +15,13 @@
   "devDependencies": {
     "nodemon": "^2.0.2"
   },
+  "nodemonConfig": {
+    "ignore": ["data/*"]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "author": "",
+  "author": "Mikko Kotola",
   "license": "MIT"
 }

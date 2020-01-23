@@ -12,8 +12,6 @@ var routeNames;
 
 function fetchBusData(fs) {
   console.log('Within fetchBusData')
-  console.log('Waltti username: ' + walttiUserName)
-  console.log('Waltti pw: ' + walttiPassword)
   var requestSettings = {
     method: 'GET',
     url: 'https://' + walttiUserName + ':' + walttiPassword + '@data.waltti.fi/' + city + '/api/gtfsrealtime/v1.0/feed/vehicleposition',
@@ -34,7 +32,6 @@ function fetchBusData(fs) {
       fs.writeFileSync(datapath, data);
     }
   });
-  console.log('Leaving fetchBusData');
 }
 
 function getRouteName(id) {
@@ -42,13 +39,12 @@ function getRouteName(id) {
     readRouteNames();    
   }
   
-  console.log('Getting route name for id ' + id);
-  var ids = String(id);
+  //console.log('Getting route name for id ' + id);
   if (routeNames[id]){
-    console.log('Returning ' + routeNames[id])
+    //console.log('Returning ' + routeNames[id])
     return routeNames[id]    
   } else {
-    console.log('Returning noval')
+    //console.log('Returning noval')
     return '-';
   }
 }
@@ -59,7 +55,7 @@ function readRouteNames() {
     columns: true,    
     skip_empty_lines: true
   });
-  console.log('Read route names from file')
+  //console.log('Read route names from file')
   routeNames = routeNamesArr.reduce(function(map, bus) {
     map[String(bus.route_id)] = bus.route_short_name;
     return map;

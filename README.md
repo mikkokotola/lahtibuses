@@ -14,7 +14,7 @@ This simple Node.js app fetches real time bus location data from the LSL / Waltt
 
 ## How to run locally
 - Start the web server by running `npm start` - this will start the server at localhost:3001 and the bus data fetcher routine
-- Open the html file lahtibuses.html in a browser
+- Navigate to http://localhost:3001 on your browser
 
 ## Configuration
 To run locally, create a file named `.env` at the root of the app and add the following content (filling in your own Waltti credentials)

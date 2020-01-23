@@ -1,5 +1,5 @@
-const datapath = require('../fetchBusData.js').datapath;
-const getRouteName = require('../fetchBusData.js').getRouteName;
+const datapath = require('../fetcher/fetcher.js').datapath;
+const getRouteName = require('../fetcher/fetcher.js').getRouteName;
 
 const busRoutes = (app, fs) => {
 
@@ -19,9 +19,7 @@ const busRoutes = (app, fs) => {
               res.send(busdata);
             } else {
               res.send();
-            }
-
-            
+            }            
         });
     });
 };
