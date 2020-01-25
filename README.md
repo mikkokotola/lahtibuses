@@ -10,11 +10,12 @@ This simple Node.js app fetches real time bus location data from the LSL / Waltt
 - Insert your Waltti credentials into file .env at the root folder of the app (see 'configuration' below)
 - Register a Google cloud platform account - see https://developers.google.com/maps/gmp-get-started
 - Create an API key for use in Google Map Javasript API - see https://developers.google.com/maps/documentation/javascript/get-api-key
-- Insert your Google API key into the google maps URL at the end of lahtibuses.html 
+- Insert your Google API key into the google maps URL at the end of public/index.html
+- Create self-signed certificate using openSSL by running this command at the project root: `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365`. This will create a certificate and write files key.pem and cert.pem to the project root folder.
 
 ## How to run locally
 - Start the web server by running `npm start` - this will start the server at localhost:3001 and the bus data fetcher routine
-- Navigate to http://localhost:3001 on your browser
+- Navigate to https://localhost:3001 on your browser
 
 ## Configuration
 To run locally, create a file named `.env` at the root of the app and add the following content (filling in your own Waltti credentials)
