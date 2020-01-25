@@ -1,4 +1,4 @@
-const urlBase = 'https://localhost:3001';
+const urlBase = '';
 const url = urlBase + '/buses';
 const updateIntervalInMs = 5000
 var map;
