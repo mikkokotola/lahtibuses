@@ -1,6 +1,10 @@
 # Ignore application data
 data/
 
+# HTTPS certificate files
+cert.pem
+key.pem
+
 # THE FOLLOWING FROM TEMPLATE AT https://github.com/github/gitignore/blob/master/Node.gitignore
 # Logs
 logs
