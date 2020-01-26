@@ -5,6 +5,10 @@ data/
 cert.pem
 key.pem
 
+# Gcloud definition
+app.yaml
+.gcloudignore
+
 # THE FOLLOWING FROM TEMPLATE AT https://github.com/github/gitignore/blob/master/Node.gitignore
 # Logs
 logs
