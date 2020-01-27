@@ -2,8 +2,8 @@
 data/
 
 # HTTPS certificate files
-cert.pem
-key.pem
+#cert.pem
+#key.pem
 
 # Gcloud definition
 app.yaml
