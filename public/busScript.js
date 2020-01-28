@@ -1,5 +1,5 @@
-const urlBase = '';
-const url = urlBase + '/buses';
+const urlBase = 'https://europe-west1-lahti-buses.cloudfunctions.net/busdata';
+const url = urlBase + '/busdata';
 const updateIntervalInMs = 5000
 var map;
 var busMarkers = [];
