@@ -1,4 +1,4 @@
-const urlBase = 'https://europe-west1-lahti-buses.cloudfunctions.net/busdata';
+const urlBase = 'https://europe-west1-lahti-buses.cloudfunctions.net';
 const url = urlBase + '/busdata';
 const updateIntervalInMs = 5000
 var map;

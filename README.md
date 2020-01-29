@@ -1,29 +1,37 @@
-# Lahti buses on a map
-This simple Node.js app fetches real time bus location data from the LSL / Waltti API and displays the buses on Google maps.
+# Lahti buses on a map - frontend
+Frontend that fetches real time bus location data in Lahti from the backend and displays the buses on Google maps. Bus location data is from LSL / Waltti API.
 
 ![alt text](./lahtibuses_screen.png "Lahti buses screencapture")
 
-## How to install
-- Install Node.js (see https://nodejs.org/en/download/)
-- Run `npm install` in the root folder - this installs dependencies
-- Register a Waltti Id account - see https://opendata.waltti.fi/getting-started
-- Insert your Waltti credentials into file .env at the root folder of the app (see 'configuration' below)
+## Deployed version
+The app is deployed at https://lahti-buses.appspot.com/.
+
+## Backend
+Source for cloud function version of backend is at https://github.com/mikkokotola/lahtibuses-backendfunction.
+
+One instance of backend is deployed as a cloud function at https://europe-west1-lahti-buses.cloudfunctions.net/busdata.
+
+## How to install and run
 - Register a Google cloud platform account - see https://developers.google.com/maps/gmp-get-started
 - Create an API key for use in Google Map Javasript API - see https://developers.google.com/maps/documentation/javascript/get-api-key
 - Insert your Google API key into the google maps URL at the end of public/index.html
-- Create self-signed certificate using openSSL by running this command at the project root: `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365`. This will create a certificate and write files key.pem and cert.pem to the project root folder.
+- Open the file index.html in your browser or serve the files from a server
 
-## How to run locally
-- Start the web server by running `npm start` - this will start the server at localhost:3001 and the bus data fetcher routine
-- Navigate to https://localhost:3001 on your browser
+## Other configuration
+- The polling interval can be set by modifying the value `const updateIntervalInMs = 5000` in busScript.js.
+- The backend urls can be set by modifying the following values in busScript.js: 
+```
+const urlBase = 'https://europe-west1-lahti-buses.cloudfunctions.net/busdata';
+const url = urlBase + '/busdata';
+```
+- The default map center position (used if user does not give permission to use her position) in busScript.js: 
+```
+const mapDefaultCenter = {
+    lat: 60.976651,
+    lng: 25.666292
+};
+```
 
-## Configuration
-To run locally, create a file named `.env` at the root of the app and add the following content (filling in your own Waltti credentials)
-WALTTIUSERNAME=xxx
-WALTTIPASSWORD=xxx
-BUSDATAFETCHINTERVAL=5000
-PORT=3001
-CITY=lahti
 
 ## How it works
-The fetcher retrieves data from the Waltti API and writes the data in JSON format into the file /data/buses.json. The server serves data from that file upon requests to the path http://localhost:3001/buses. The frontend polls the backend and updates a Google maps map according to the data, creating an icon for every bus that the backend returns.
+The frontend polls the backend and updates a Google maps map according to the data, creating an icon for every bus that the backend returns. User's position is marked and map is centered to it if the user gives permission.
