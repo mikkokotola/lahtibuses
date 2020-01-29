@@ -32,6 +32,8 @@ const mapDefaultCenter = {
 };
 ```
 
+## Source data
+Waltti API documentation is available at https://opendata.waltti.fi/.
 
 ## How it works
 The frontend polls the backend and updates a Google maps map according to the data, creating an icon for every bus that the backend returns. User's position is marked and map is centered to it if the user gives permission.
