@@ -90,7 +90,7 @@ function makeBusMarker(lat, lon, txt) {
         position: { lat: lat, lng: lon },
         map: map,
         icon: icon,
-        label: { color: '#000000', fontWeight: 'bold', fontSize: '16px', text: txt }
+        label: { color: '#808080', fontWeight: 'bold', fontSize: '16px', text: txt }
     });
     console.log('Pushing marker with latlon ' + lat + ', ' + lon);
     busMarkers.push(marker);
@@ -129,10 +129,11 @@ function isWithinGeoBox(bus) {
 
 function geo_success(position) {
     makeOwnPositionMarker(position.coords.latitude, position.coords.longitude);
-    map.panTo({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-    });
+    // Dont pan to user's location every time the position changes. Small position changes are frequent with phones.
+    // map.panTo({
+    //     lat: position.coords.latitude,
+    //     lng: position.coords.longitude
+    // });
 }
 
 function geo_error() {
