@@ -24,9 +24,9 @@ function createMap(mapCenter) {
 
     icon = {
         url: 'https://svgsilh.com/png/296715-3f51b5.png', // url
-        scaledSize: new google.maps.Size(25, 25), // scaled size            
+        scaledSize: new google.maps.Size(30, 30), // scaled size            
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(0, 0)
+        anchor: new google.maps.Point(15, 15)
     };
 }
 
@@ -90,7 +90,7 @@ function makeBusMarker(lat, lon, txt) {
         position: { lat: lat, lng: lon },
         map: map,
         icon: icon,
-        label: { color: '#808080', fontWeight: 'bold', fontSize: '16px', text: txt }
+        label: { color: '#FF8000', fontWeight: 'bold', fontSize: '18px', text: txt }
     });
     console.log('Pushing marker with latlon ' + lat + ', ' + lon);
     busMarkers.push(marker);
